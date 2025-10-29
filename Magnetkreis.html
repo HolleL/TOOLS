@@ -1,0 +1,87 @@
+<!DOCTYPE html><html>
+<head>
+  <title>Magnetkreis-Kalkulator www.lambertus.info </title>
+  <meta charset="UTF-8">     
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                                                        
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css"    rel="stylesheet" href="stylesheet.css">
+</head>
+
+
+<body><center>
+<table>
+<tr bgcolor="E3E3E3">
+	<td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; Magnetkreis-Kalkulator</a></td>
+	<td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+</tr>
+<tr><td colspan="2"><pre><form action="JavaScript:Calc();" name="FORM">
+   Rückschluss Innen-Durchm. [mm] <input name= "RRinnen" 	size="4" type="text"	onChange="Calc(this.form)"	value="25">
+                Magnet-Breite[mm] <input name= "MagBreite" 	size="4" type="text"	onChange="Calc(this.form)"	value="4" >
+                Magnet-Dicke [mm] <input name= "MagDicke" 	size="4" type="text"	onChange="Calc(this.form)"	value="1" >
+                         Polzahl: <input name= "Polzahl" 	size="4" type="text"	onChange="Calc(this.form)"	value="14">
+           Statordurchmesser [mm] <input name= "StatorD" 	size="4" type="text"	onChange="Calc(this.form)"	value="20">
+                           
+                                  
+                    Abdeckung [%] <input name="Abdeckung"	size="4" type="text"	readonly="readonly"	CLASS=OUTP >
+             Abstand Magnete [mm] <input name="MagAbstand"	size="4" type="text"	readonly="readonly"	CLASS=OUTP >
+                   Luftspalt [mm] <input name="Luftspalt"	size="4" type="text"	readonly="readonly"	CLASS=OUTP >
+</form></pre>
+</td></tr>
+
+<tr><td colspan="2">
+<canvas id="leinwand" width="420" height="420"></canvas>
+</td></tr></table>
+</center>
+
+
+
+<script>
+function parseNum(val){re = /,/g;	return parseFloat( val.replace( re, '.' ) );}  // Kommascript
+
+function Calc() {
+var RRinnen  = parseNum(FORM.RRinnen.value);
+var MagBreite = parseNum(FORM.MagBreite.value);
+var MagDicke  = parseNum(FORM.MagDicke.value);
+var Polzahl   =parseNum(FORM.Polzahl.value);
+var StatorD   =parseNum(FORM.StatorD.value);
+var MagRadius = Math.sqrt(RRinnen/2*RRinnen/2-MagBreite/2*MagBreite/2)-MagDicke;  //Radius zur Magneinnenseite Magnetmitte
+var MagInnenumgang = (RRinnen - MagDicke*2) *3.14;
+var MagGesBreite = Polzahl * MagBreite;
+
+FORM.Abdeckung.value   = Math.round( MagGesBreite / MagInnenumgang * 1000)/10; //Mag-Abdeckung mm / Magentinnenumfang 
+FORM.MagAbstand.value  = Math.round((MagInnenumgang - MagGesBreite) / Polzahl  *10)/10;
+FORM.Luftspalt.value   = Math.round( (MagRadius - (StatorD/2)) *10)/10;
+
+var scale = 400 / RRinnen;
+var leinwand = document.getElementById('leinwand').getContext('2d');
+// Zuerst den gesamten Canvas löschen, um vorherige Zeichnungen zu entfernen
+	leinwand.clearRect(-210, -210, 420, 420);
+// Setze die Transformationen zurück
+	leinwand.setTransform(1, 0, 0, 1, 0, 0);
+	leinwand.translate(210, 210); //Mitte ist Null 
+// Den inneren Bereich des Kreises weiß füllen
+	leinwand.fillStyle = "White";  
+	leinwand.beginPath();
+	leinwand.arc(00,00, RRinnen/2*scale, 0, Math.PI * 2, true); 
+	leinwand.fill();	
+// Jetzt den Rand des Kreises zeichnen:	
+	leinwand.lineWidth = 3;
+	leinwand.strokeStyle = "#404040";
+	leinwand.beginPath(); 
+	leinwand.arc(00,00, RRinnen/2*scale, 0, Math.PI * 2, true);
+	leinwand.stroke();	
+// Magnete zeichnen	
+for (var i = 0; i < Polzahl; i++) {
+	leinwand.rotate(360  / Polzahl * Math.PI / 180);
+	leinwand.fillStyle = "brown"; 
+	leinwand.fillRect(MagRadius*scale, MagBreite*scale/-2, MagDicke*scale, MagBreite*scale);   // x, y, b, h
+}
+}
+	window.onload = Calc;
+</script>
+</body>
+</html>

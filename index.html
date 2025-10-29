@@ -1,7 +1,8 @@
 <!DOCTYPE html><html>
 <head>
-  <title>Magnetkreis-Kalkulator www.lambertus.info </title>
+  <title>SOLARFLUG BLDC MOTOREN www.lambertus.info </title>
   <meta charset="UTF-8">     
+  <meta name="Content-language" content="DE">
   <meta name="author"      content="Holger Lambertus">
   <meta name="copyright"   content="Holger Lambertus">
   <meta name="publisher"   content="Holger Lambertus">                                                                                                        
@@ -11,75 +12,61 @@
   <link type="text/css"    rel="stylesheet" href="stylesheet.css">
 </head>
 
+<body>
+<center>
 
-<body><center>
-<table>
+<table  width="300">
+
 <tr bgcolor="E3E3E3">
-	<td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; Magnetkreis-Kalkulator</a></td>
-	<td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+	<td align="center"> <i><b>&nbsp;www.Lambertus.info&nbsp;&nbsp;</b></i></td>
 </tr>
-<tr><td colspan="2"><form action="JavaScript:Calc();" name="FORM"><pre>
-   Rückschluss Innen-Durchm. [mm] <input name= "RRinnen" 	size="4" type="text"	onChange="Calc(this.form)"	value="25">
-                Magnet-Breite[mm] <input name= "MagBreite" 	size="4" type="text"	onChange="Calc(this.form)"	value="4" >
-                Magnet-Dicke [mm] <input name= "MagDicke" 	size="4" type="text"	onChange="Calc(this.form)"	value="1" >
-                         Polzahl: <input name= "Polzahl" 	size="4" type="text"	onChange="Calc(this.form)"	value="14">
-           Statordurchmesser [mm] <input name= "StatorD" 	size="4" type="text"	onChange="Calc(this.form)"	value="20">
-                                  <input value="CALC" type="submit" onclick="Calc()">
-                                  
-                    Abdeckung [%] <input name="Abdeckung"	size="4" type="text"	readonly="readonly"	CLASS=OUTP >
-             Abstand Magnete [mm] <input name="MagAbstand"	size="4" type="text"	readonly="readonly"	CLASS=OUTP >
-                   Luftspalt [mm] <input name="Luftspalt"	size="4" type="text"	readonly="readonly"	CLASS=OUTP >
-</pre>
-</td></tr>
-</form>
-<tr><td colspan="2">
-<canvas id="leinwand" width="420" height="420"></canvas>
-</td></tr></table>
-</center>
+
+<tr>
+	<td align="right" CLASS=small >Technik ohne Schnick-Schnack ! &nbsp;</td>
+</tr>
+
+<tr>
+<td valign="top"><pre>
+<a href="KV-Reconfigurator.html"  ><big>&nbsp;&#9992;</big> KV-Reconfigurator</a>
+<a href="Motor-Ri-Kalkulator.html"><big>&nbsp;&#9992;</big> Motor-Ri-Kalkulator</a>
+<a href="kurven.html"             ><big>&nbsp;&#9992;</big> Motor-Kurven <font color="red">NEU</font></a>
+<a href="bewicklungsrechner.html" ><big>&nbsp;&#9992;</big> Bewicklungsrechner/SIMU</a>
+<a href="Drahttabelle.html"       ><big>&nbsp;&#9992;</big> Cu-Lackdraht-Tabelle</a>
+<a href="WZipfel.html"            ><big>&nbsp;&#9992;</big> Wickelzipfel 3D-Druck</a>
+<a href="Magnetring.html"         ><big>&nbsp;&#9992;</big> Magnet-Klebschablone 3D-Druck </a>
+<a href="Magnetkreis.html"        ><big>&nbsp;&#9992;</big> Magnetkreis Kalkulator</a>
+
+<a href="mittelstueck.html"       ><big>&nbsp;&#9992;</big> 3D-Druck Propeller-Mittelstück <font color="red">NEU</font></a>
+<a href="Prop-Kalkulator.html"    ><big>&nbsp;&#9992;</big> Prop-Kalkulator</a>
+
+<a href="Solarzellen.html"        ><big>&nbsp;&#9992;</big> Solarzellen INFO</a>
+<a href="Solarflaeche.html"       ><big>&nbsp;&#9992;</big> Solarfläche Kalkulator</a>
+<a href="MPP.html"                ><big>&nbsp;&#9992;</big> Solarflug MPP-Steuerung</a>
+
+<a href="coilwind.html"           ><big>&nbsp;&#9992;</big> Coilwinder G-Code</a>
+<a href="Ucalc.html"              ><big>&nbsp;&#9992;</big> U-Werte berechnen(Gebäude)</a>
+</pre></td>
+</tr>
+<tr>
+	<td align="right" CLASS=small ><a href="Impressum.html">Impressum &nbsp;</a> &nbsp;</td>
+</tr>
 
 
-
-<script>
-function parseNum(val){re = /,/g;	return parseFloat( val.replace( re, '.' ) );}  // Kommascript
-
-function Calc() {
-var RRinnen  = parseNum(FORM.RRinnen.value);
-var MagBreite = parseNum(FORM.MagBreite.value);
-var MagDicke  = parseNum(FORM.MagDicke.value);
-var Polzahl   =parseNum(FORM.Polzahl.value);
-var StatorD   =parseNum(FORM.StatorD.value);
-var MagRadius = Math.sqrt(RRinnen/2*RRinnen/2-MagBreite/2*MagBreite/2)-MagDicke;  //Radius zur Magneinnenseite Magnetmitte
-//var MagInnenumgang = MagRadius * 2 * 3.14;
-var MagInnenumgang = (RRinnen - MagDicke*2) *3.14;
-var MagGesBreite = Polzahl * MagBreite;
-
-
-FORM.Abdeckung.value   = Math.round( MagGesBreite / MagInnenumgang * 1000)/10; //Mag-Abdeckung mm / Magentinnenumfang 
-
-FORM.MagAbstand.value  = Math.round((MagInnenumgang - MagGesBreite) / Polzahl  *10)/10;
-
-FORM.Luftspalt.value   = Math.round( (MagRadius - (StatorD/2)) *10)/10;
+</table>
+<h5><i><a href="index.html"> (c) www.Lambertus.info</a></i></h5>
+</center></body></html>
 
 
 
 
-var scale = 400 / RRinnen;
-var leinwand = document.getElementById('leinwand').getContext('2d');
-	leinwand.setTransform(1, 0, 0, 1, 0, 0);
-	leinwand.translate(210, 210); //Mitte ist Null 
-	leinwand.fillStyle = "White";  
-	leinwand.arc(00,00, RRinnen/2*scale, 0, Math.PI * 2, true); // Outer circle
-	leinwand.fill();
-	leinwand.fillStyle = "Black"; 
-	leinwand.arc(00,00, RRinnen/2*scale, 0, Math.PI * 2, true); // Outer circle
-	leinwand.stroke();
-for (var i = 0; i < Polzahl; i++) {
-	leinwand.rotate(360  / Polzahl * Math.PI / 180);
-	leinwand.fillRect(MagRadius*scale, MagBreite*scale/-2, MagDicke*scale, MagBreite*scale);   // x, y, b, h
-}
-}
 
 
-</script>
-</body>
-</html>
+
+
+
+
+
+
+
+
+

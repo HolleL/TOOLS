@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3D-Wickelzipfel www.lambertus.info</title>
+  <meta charset="UTF-8">      
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                  
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="stylesheet.css">
+  
+  <script src="lib/three.min.js"></script>
+  <script src="lib/orbitcontrols.js"></script>
+  <script src="lib/projector.js"></script>
+  <script src="lib/canvasrenderer.js"></script>
+  <script src="lib/jquery-2.1.3.min.js"></script>
+  <script src="src/csg.js"></script>
+  <script src="src/threecsg.js"></script>
+  <script src="src/openjscad.js"></script>
+  <script src="src/formats.js"></script>
+  <script>
+    var gProcessor = null; 
+    OpenJsCad.AlertUserOfUncaughtExceptions(); 
+    function onload() {
+      gProcessor = new OpenJsCad.Processor(document.getElementById("viewer"));
+      loadExternalJscad('JSCAD/MS.jscad');  // Lade direkt beim Start die Datei.
+    }
+    function loadExternalJscad(filePath) {      // Funktion zum Laden externer JSCAD-Dateien.
+      $.get(filePath, function(data) {
+        gProcessor.setJsCad(data);
+      })
+      .fail(function() {
+        console.error("Fehler beim Laden der JSCAD-Datei: " + filePath);
+      });
+    }
+  </script>
+</head>
+
+<body onload="onload()">
+
+<table width="800">
+  <tr bgcolor="E3E3E3">
+    <td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992;Mittelst&uuml;ck</a></td>
+    <td align="right"><a href="index.html"><big>&#10008;&nbsp;</big></a></td>
+  </tr>
+</table>
+  
+<div id="viewer"></div>
+<div id="parameters"></div>
+  
+<center><h4><i><a href="index.html"> (c) www.Lambertus.info</a></i></h4></center>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html><html>
+<head>
+  <title>Prop-Kalkulator www.lambertus.info </title>
+  <meta charset="UTF-8">     
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                                                        
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css"    rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body><center>
+<form name="FORM" action="JavaScript:Calc();">
+<table>
+<tr bgcolor="E3E3E3">
+	<td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; Prop-Kalkulator</a></td>
+	<td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+</tr>
+
+<tr CLASS=tr><td>Propdurchmesser        </td><td><input name="Durch_E" size="3" 				type="text" onchange="Calc( this.form )"> [Zoll]</td></tr>
+<tr CLASS=tr><td>Propsteigung           </td><td><input name="Steig_E" size="3" 				type="text" onchange="Calc( this.form )"> [Zoll]</td></tr>
+<tr CLASS=tr><td>Mittelstück Verwindung </td><td><input name="MS_GRAD" size="3" value="0" 	type="text" onchange="Calc( this.form )"> [Grad]</td></tr>
+<tr CLASS=tr><td>Mittelstück-Größe      </td><td><input name="MS_mm"   size="3" value="45"	type="text"	onchange="Calc( this.form )"> [mm] (default 45mm)</td></tr>
+<tr CLASS=tr><td id="FINALPROP" colspan="2">&nbsp;Bitte Propdaten eingeben</td></tr>
+<tr CLASS=tr><td>Propellerdrehzahl     </td><td><input name="RPMA" onchange="Calc( this.form )"    size="3" type="text"> [rpm]</td></tr>
+<tr CLASS=tr><td id="nachRPM"   colspan="2">&nbsp;                         </td></tr>
+<tr CLASS=tr><td>Wellenleistung        </td><td><input name="PWelleB" onchange="Calc( this.form )" size="3" type="text"> [Watt]</td></tr>
+<tr CLASS=tr><td id="nachPw"    colspan="2">&nbsp;</td></tr>
+<tr CLASS=tr><td id="n100W"     colspan="2">&nbsp;</td></tr>
+</table>
+<h5><i><a href="index.html"> (c) www.Lambertus.info</a></i></h5>
+</form>
+
+
+<script type="text/javascript">
+function Calc() {
+// Berechnung der Propellergröße
+var D = document.FORM.Durch_E.value * 1 + ( (document.FORM.MS_mm.value * 1 - 45 ) / 25.4 ); 		// endgültiger Durchmesser in Zoll
+var GRADorg =  Math.atan2(document.FORM.Steig_E.value, (D * 2/3 * Math.PI)) * 180 / Math.PI ;
+var GRAD_MS =  document.FORM.MS_GRAD.value * 1  + GRADorg  ;
+var S = Math.tan(GRAD_MS * Math.PI / 180) * 2/3 * Math.PI * D; 										// endgültige Steigung in Zoll
+document.getElementById("FINALPROP").innerHTML = ("Finale Propgröße: <b>" +Math.round(D*10)/10 + " x " +  Math.round(S*10)/10 +"</b> Zoll" );
+
+///Berechnung nach RPM
+var rpmA =   document.FORM.RPMA.value;
+var PwA = Math.pow(D,4 ) * S * Math.pow( rpmA / 1000, 3 ) * 1.2 / 248832;
+var schubA = 200 * 0.65 * PwA * 6000 / S / 2.54 / rpmA;
+var speedA = rpmA * S * 0.00042333;
+if (rpmA > 0) {document.getElementById("nachRPM").innerHTML = ("Vpitch= " + Math.round(speedA) + "m/S | Schub | " + Math.round(schubA) +"g | Pw " + Math.round(PwA*10)/10 + "Watt");  }
+         else {document.getElementById("nachRPM").innerHTML = ("keine Drehzahl eingegeben" );}
+
+///Berechnung nach Wellenleistung
+var PwB = document.FORM.PWelleB.value;
+var rpmB = Math.cbrt(PwB  / (Math.pow(D,4)  * S * 1.2 / 248832))*1000 ;
+var schubB = 200 * 0.65 * PwB * 6000 / S / 2.54 / rpmB;
+var speedB = rpmB * S * 0.00042333;
+if (PwB > 0) {document.getElementById("nachPw").innerHTML = ("Vpitch " + Math.round(speedB) + "m/S | Schub " + Math.round(schubB) +"g | n: " + Math.round(rpmB) + "rpm"); }
+        else {document.getElementById("nachPw").innerHTML = ("keine Wellenleistung eingegeben");}
+
+/// Berechnung n100W
+var n100W = rpmA * 4.64 / Math.cbrt(PwB);
+if (PwB>0&&rpmA>0){ document.getElementById("n100W").innerHTML = ("n:"+ rpmA +"rpm und Pw:" + PwB +"Watt ergeben einen n100W:<b> "+ Math.round(n100W)+"</b>");}
+              //else{ document.getElementById("n100W").innerHTML = ("Sonderfunktion: durch Eingabe von n und Pw kann ein n100W erstellt werden");}
+}</script>
+
+</center></body></html>

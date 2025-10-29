@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KV-Reconfigurator www.lambertus.info </title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Holger Lambertus">
+    <meta name="copyright" content="Holger Lambertus">
+    <meta name="publisher" content="Holger Lambertus">
+    <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+    <meta name="keywords" content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+<center>
+<form name="FORM" action="JavaScript:Calc();">
+<table>
+<tr class="header-row">
+    <td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; KV-Reconfigurator</a></td>
+    <td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+</tr>
+
+<tr>
+<td valign="top"><pre>              <b>ORGINAL-WDG</b>
+         KV [rpm/V] <input name="V_KV"  value="520" size="6" type="text" onChange="Calc()">
+          Windungen <input name="V_WDG" value="11"  size="6" type="text" onChange="Calc()">
+   Statorhoehe [mm] <input name="V_SH"  value="30"  size="6" type="text" onChange="Calc()">
+       Verschaltung <input name="V_PG"  value="1"   size="1" type="text" onChange="Calc()"><select name="V_YD" onChange="Calc()" ><option value="1" >D</option><option value="1.73">Y</option></select>
+
+<hr color="#AAAAAA" size="1">
+<b> Füllgrad Kupfer / Nut:</b>
+  Drahtdurchm.[mm] <select name="V_WireD" onChange="Calc()">
+<option value="2"         >2,0    </option>
+<option value="1.9"         >1,9    </option>
+<option value="1.8"         >1,8    </option>
+<option value="1.7"         >1,7    </option>
+<option value="1.6"         >1,6    </option>
+<option value="1.5"         >1,5    </option>
+<option value="1.4"         >1,4    </option>
+<option value="1.32"    >1,32    </option>
+<option value="1.25"    >1,25    </option>
+<option value="1.18"    selected="selected">1,18</option>
+<option value="1.12"    >1,12    </option>
+<option value="1.06"    >1,06    </option>
+<option value="1"         >1,00    </option>
+<option value="0.95"    >0,95    </option>
+<option value="0.9"         >0,90    </option>
+<option value="0.85"    >0,85    </option>
+<option value="0.8"         >0,80    </option>
+<option value="0.75"    >0,75    </option>
+<option value="0.71"    >0,71    </option>
+<option value="0.67"    >0,67    </option>
+<option value="0.63"    >0,63    </option>
+<option value="0.6"         >0,60    </option>
+<option value="0.56"    >0,56    </option>
+<option value="0.53"    >0,53    </option>
+<option value="0.5"         >0,50    </option>
+<option value="0.475"    >0,475    </option>
+<option value="0.45"    >0,45    </option>
+<option value="0.425"    >0,425    </option>
+<option value="0.4"         >0,40    </option>
+<option value="0.375"    >0,375    </option>
+<option value="0.355"    >0,355    </option>
+<option value="0.335"    >0,335    </option>
+<option value="0.315"    >0,315    </option>
+<option value="0.3"         >0,300    </option>
+<option value="0.28"    >0,280    </option>
+<option value="0.265"    >0,265    </option>
+<option value="0.25"    >0,250    </option>
+<option value="0.236"    >0,236    </option>
+<option value="0.224"    >0,224    </option>
+<option value="0.212"    >0,212    </option>
+<option value="0.2"         >0,200    </option>
+<option value="0.19"    >0,190    </option>
+<option value="0.18"    >0,180    </option>
+<option value="0.17"    >0,170    </option>
+<option value="0.16"    >0,160    </option>
+<option value="0.15"    >0,150    </option>
+<option value="0.14"    >0,140    </option>
+<option value="0.132"    >0,132    </option>
+<option value="0.125"    >0,125    </option>
+<option value="0.118"    >0,118    </option>
+<option value="0.112"    >0,112    </option>
+<option value="0.106"    >0,106    </option>
+<option value="0.1"         >0,100    </option>
+</select>
+    Drähte (Filar) <input name="V_Filar"   value="1"    size="6" type="text"    onChange="Calc()">
+Ersetzt Draht [mm] <input name="V_EsatzD"     size="5" type="text"    readonly="readonly" CLASS=OUTP>
+Füllfaktor Cu[mm&sup2;] <input name="V_Fuell" size="5" type="text"    readonly="readonly" CLASS=OUTP >
+
+<hr color="#AAAAAA" size="1">
+<b> Füllgrad machanisch / Nut:</b>
+ Draht Isolatation <select name="V_Grade" onChange="Calc()" ><option value="1" >G1</option><option value="2" selected="selected">G2</option><option value="3">G3</option></select>
+ Mechanisch [mm&sup2;]  <input name="V_FuellMech"           size="5" type="text"    readonly="readonly" CLASS=OUTP >
+
+<hr color="#AAAAAA" size="1">
+<b>Drahtlänge und Widerstand:</b>
+    Drahtlänge [m] <input name="V_laenge" value="1" size="6" type="text" onChange="Calc()">
+   Widerstand [m&#8486;] <input name="V_Ri" value="" size="5" type="text" readonly="readonly" CLASS=OUTP>
+ Kupfergewicht [g] <input name="V_Kupfergewicht" value="" size="5" type="text" readonly="readonly" CLASS=OUTP>
+
+</pre></td>
+
+<td valign="top" width="110" ><pre>  <b>Reconfig</b>
+<input name="N_KV_D"             size="5" type="text"    readonly="readonly" CLASS=OUTP >
+<input name="N_WDG"   value=""        size="6" type="text"  onChange="Calc()">
+<input name="N_SH"  value="30"  size="6" type="text"    onChange="Calc()">
+<input name="N_PG"  value="1"     size="1" type="text"  onChange="Calc()"><select name= "N_YD" onChange="Calc()" ><option value="1" >D</option><option value="1.73">Y</option></select>
+
+<hr color="#AAAAAA" size="1">
+
+<select name="N_WireD" onChange="Calc()">
+<option value="2"         >2,0    </option>
+<option value="1.9"         >1,9    </option>
+<option value="1.8"         >1,8    </option>
+<option value="1.7"         >1,7    </option>
+<option value="1.6"         >1,6    </option>
+<option value="1.5"         >1,5    </option>
+<option value="1.4"         >1,4    </option>
+<option value="1.32"    >1,32    </option>
+<option value="1.25"    >1,25    </option>
+<option value="1.18"    selected="selected">1,18</option>
+<option value="1.12"    >1,12    </option>
+<option value="1.06"    >1,06    </option>
+<option value="1"         >1,00    </option>
+<option value="0.95"    >0,95    </option>
+<option value="0.9"         >0,90    </option>
+<option value="0.85"    >0,85    </option>
+<option value="0.8"         >0,80    </option>
+<option value="0.75"    >0,75    </option>
+<option value="0.71"    >0,71    </option>
+<option value="0.67"    >0,67    </option>
+<option value="0.63"    >0,63    </option>
+<option value="0.6"         >0,60    </option>
+<option value="0.56"    >0,56    </option>
+<option value="0.53"    >0,53    </option>
+<option value="0.5"         >0,50    </option>
+<option value="0.475"    >0,475    </option>
+<option value="0.45"    >0,45    </option>
+<option value="0.425"    >0,425    </option>
+<option value="0.4"         >0,40    </option>
+<option value="0.375"    >0,375    </option>
+<option value="0.355"    >0,355    </option>
+<option value="0.335"    >0,335    </option>
+<option value="0.315"    >0,315    </option>
+<option value="0.3"         >0,300    </option>
+<option value="0.28"    >0,280    </option>
+<option value="0.265"    >0,265    </option>
+<option value="0.25"    >0,250    </option>
+<option value="0.236"    >0,236    </option>
+<option value="0.224"    >0,224    </option>
+<option value="0.212"    >0,212    </option>
+<option value="0.2"         >0,200    </option>
+<option value="0.19"    >0,190    </option>
+<option value="0.18"    >0,180    </option>
+<option value="0.17"    >0,170    </option>
+<option value="0.16"    >0,160    </option>
+<option value="0.15"    >0,150    </option>
+<option value="0.14"    >0,140    </option>
+<option value="0.132"    >0,132    </option>
+<option value="0.125"    >0,125    </option>
+<option value="0.118"    >0,118    </option>
+<option value="0.112"    >0,112    </option>
+<option value="0.106"    >0,106    </option>
+<option value="0.1"         >0,100    </option>
+</select>
+<input name="N_Filar"   value="1"    size="6" type="text"    onChange="Calc()">
+<input name="N_EsatzD"                size="5" type="text"    readonly="readonly" CLASS=OUTP>
+<input name="N_Fuell"                 size="5" type="text"    readonly="readonly" CLASS=OUTP >
+
+<hr color="#AAAAAA" size="1">
+
+<select name="N_Grade" onChange="Calc()" ><option value="1" >G1</option><option value="2" selected="selected">G2</option><option value="3">G3</option></select>
+<input name="N_FuellMech"           size="5" type="text"    readonly="readonly" CLASS=OUTP >
+
+<hr color="#AAAAAA" size="1">
+
+<input name="N_laenge" value="1" size="6" type="text" onChange="Calc()">
+<input name="N_Ri" value="" size="5" type="text" readonly="readonly" CLASS=OUTP>
+<input name="N_Kupfergewicht" value="" size="5" type="text" readonly="readonly" CLASS=OUTP>
+</pre>
+</td>
+</tr>
+</table>
+<h5><i><a href="index.html"> (c) www.Lambertus.info</a></i></h5>
+</form>
+
+<script type="text/javascript">
+// Kommascript - ersetzt Kommas durch Punkte für parseFloat
+function parseNum(val){
+    if (val === "" || val === null) {
+        return 0;
+    }
+    re = /,/g;
+    return parseFloat( val.replace( re, '.' ) );
+}
+
+// Zentrale Lookup-Tabelle für Lackdicken basierend auf Drahtdurchmesser
+const LACK_DIAMETER_LOOKUP = {
+    "2": 0.04675,
+    "1.9": 0.04675,
+    "1.8": 0.0455,
+    "1.7": 0.0455,
+    "1.6": 0.04425,
+    "1.5": 0.04425,
+    "1.4": 0.04275,
+    "1.32": 0.04275,
+    "1.25": 0.0415,
+    "1.18": 0.0415,
+    "1.12": 0.0405,
+    "1.06": 0.0405,
+    "1": 0.03925,
+    "0.95": 0.03925,
+    "0.9": 0.03725,
+    "0.85": 0.03725,
+    "0.8": 0.035,
+    "0.75": 0.035,
+    "0.71": 0.033,
+    "0.67": 0.033,
+    "0.6"         : 0.031,
+    "0.56"    : 0.02925,
+    "0.53"    : 0.02925,
+    "0.5"         : 0.02775,
+    "0.475"    : 0.02775,
+    "0.45"    : 0.02625,
+    "0.425"    : 0.02625,
+    "0.4"         : 0.02475,
+    "0.375"    : 0.02475,
+    "0.355"    : 0.0235,
+    "0.335"    : 0.0235,
+    "0.315"    : 0.02175,
+    "0.3"         : 0.02175,
+    "0.28"    : 0.0205,
+    "0.265"    : 0.0205,
+    "0.25"    : 0.01975,
+    "0.236"    : 0.01875, // Korrigierter Wert für 0.236
+    "0.224"    : 0.01775,
+    "0.212"    : 0.01775,
+    "0.2"         : 0.0165,
+    "0.19"    : 0.01625,
+    "0.18"    : 0.0155,
+    "0.17"    : 0.015,
+    "0.16"    : 0.01425,
+    "0.15"    : 0.0135,
+    "0.14"    : 0.013,
+    "0.132"    : 0.01275,
+    "0.125"    : 0.01225,
+    "0.118"    : 0.0115,
+    "0.112"    : 0.0115,
+    "0.106"    : 0.011,
+    "0.1"         : 0.01075
+};
+
+// Spezifischer Widerstand von Kupfer in mOhm*mm^2/m
+const KUPFER_SPEZIFISCHER_WIDERSTAND = 178; // Korrigiert: "WIDERSTAND"
+// Dichte von Kupfer in g/mm³ (8.96 g/cm³ = 0.00896 g/mm³)
+const KUPFER_DICHTE_G_PRO_MM3 = 0.00896;
+// Anzahl der Phasen
+const ANZAHL_PHASEN = 3;
+
+
+function Calc() {
+    // Variablen einsammeln
+    var V_KV    = parseNum(FORM.V_KV.value);
+    var V_WDG   = parseNum(FORM.V_WDG.value);
+    var V_SH    = parseNum(FORM.V_SH.value);
+    var V_PG    = parseNum(FORM.V_PG.value); // Draehte parallel
+    var V_YD    = parseNum(FORM.V_YD.value); // 1 für D, 1.73 für Y
+    var V_WireD = parseNum(FORM.V_WireD.value);
+    var V_Filar = parseNum(FORM.V_Filar.value);
+    var V_Grade = parseNum(FORM.V_Grade.value);
+    var V_laenge = parseNum(FORM.V_laenge.value); // Drahtlaenge in m
+
+    var N_WDG   = parseNum(FORM.N_WDG.value);
+    var N_SH    = parseNum(FORM.N_SH.value);
+    var N_PG    = parseNum(FORM.N_PG.value); // Draehte parallel
+    var N_YD    = parseNum(FORM.N_YD.value); // 1 für D, 1.73 für Y
+    var N_Filar = parseNum(FORM.N_Filar.value);
+    var N_Grade = parseNum(FORM.N_Grade.value);
+    var N_WireD = parseNum(FORM.N_WireD.value);
+    var N_laenge = parseNum(FORM.N_laenge.value); // Drahtlaenge in m
+
+    // Lackdicken über das Lookup-Objekt abrufen
+    var V_Lack = LACK_DIAMETER_LOOKUP[String(V_WireD)] || 0;
+    var N_Lack = LACK_DIAMETER_LOOKUP[String(N_WireD)] || 0;
+
+    // Berechnungen für KV, Füllgrad Kupfer und Füllgrad mechanisch
+    FORM.N_KV_D.value   = Math.round (V_KV * V_WDG / N_WDG * V_SH / N_SH * N_PG / V_PG * V_YD / N_YD );
+
+    FORM.V_Fuell.value  = Math.round (10    * V_WDG * V_WireD *V_WireD * V_Filar * 0.7853981625)/10;
+    FORM.N_Fuell.value  = Math.round (10    * N_WDG * N_WireD *N_WireD * N_Filar * 0.7853981625)/10;
+
+    FORM.V_EsatzD.value = Math.round ( 100 * Math.sqrt(V_WireD * V_WireD * V_Filar))/100;
+    FORM.N_EsatzD.value = Math.round ( 100 * Math.sqrt(N_WireD * N_WireD * N_Filar))/100;
+
+    FORM.N_FuellMech.value = Math.round (10    * N_WDG * (N_WireD+(N_Lack*N_Grade)) * (N_WireD+(N_Lack*N_Grade)) * N_Filar * 0.7853981625)/10;
+    FORM.V_FuellMech.value = Math.round (10    * V_WDG * (V_WireD+(V_Lack*V_Grade)) * (V_WireD+(V_Lack*V_Grade)) * V_Filar * 0.7853981625)/10;
+
+    // --- NEUE BERECHNUNGEN FÜR WIDERSTAND ---
+    // Querschnitt eines einzelnen Drahtes (in mm^2)
+    var V_Einzeldraht_Q = (V_WireD * V_WireD * 0.7853981625);
+    var N_Einzeldraht_Q = (N_WireD * N_WireD * 0.7853981625);
+
+    // Gesamtquerschnitt pro Phase unter Berücksichtigung der Filar und der parallelen Stränge (PG)
+    var V_Gesamt_Q_Phase = V_Einzeldraht_Q * V_Filar * V_PG;
+    var N_Gesamt_Q_Phase = N_Einzeldraht_Q * N_Filar * N_PG;
+
+    // Nur berechnen, wenn Drahtlänge und Querschnitt gültig sind
+    if (V_laenge > 0 && V_Gesamt_Q_Phase > 0) {
+        // Ri Einzeldraht (bezieht sich auf eine Phase) in mOhm
+        // Formel: Widerstand = (Spezifischer Widerstand * Länge) / Querschnitt
+        // Hinzugefügt: Division durch 10 wie im ursprünglichen Ri-Kalkulator
+        var V_Ri_Einfach_mOhm = (KUPFER_SPEZIFISCHER_WIDERSTAND * V_laenge) / V_Gesamt_Q_Phase / 10;
+
+        // Ri Dreieck (mOhm)
+        var V_Ri_Dreieck_mOhm = V_Ri_Einfach_mOhm / 1.5;
+
+        // Ri Stern (mOhm)
+        var V_Ri_Stern_mOhm = V_Ri_Einfach_mOhm * 2.0;
+
+        // Ausgabe basierend auf der Verschaltung (Y oder D)
+        if (V_YD === 1) { // D für Dreieck
+            FORM.V_Ri.value = V_Ri_Dreieck_mOhm.toFixed(3); // Auf 3 Nachkommastellen runden
+        } else if (V_YD === 1.73) { // Y für Stern
+            FORM.V_Ri.value = V_Ri_Stern_mOhm.toFixed(3); // Auf 3 Nachkommastellen runden
+        } else {
+            FORM.V_Ri.value = "N/A"; // Nicht anwendbar, falls unbekannte Verschaltung
+        }
+    } else {
+        FORM.V_Ri.value = "N/A";
+    }
+
+    if (N_laenge > 0 && N_Gesamt_Q_Phase > 0) {
+        var N_Ri_Einfach_mOhm = (KUPFER_SPEZIFISCHER_WIDERSTAND * N_laenge) / N_Gesamt_Q_Phase / 10; // Hinzugefügt: Division durch 10
+
+        var N_Ri_Dreieck_mOhm = N_Ri_Einfach_mOhm / 1.5;
+        var N_Ri_Stern_mOhm = N_Ri_Einfach_mOhm * 2.0;
+
+        if (N_YD === 1) { // D für Dreieck
+            FORM.N_Ri.value = N_Ri_Dreieck_mOhm.toFixed(3);
+        } else if (N_YD === 1.73) { // Y für Stern
+            FORM.N_Ri.value = N_Ri_Stern_mOhm.toFixed(3);
+        } else {
+            FORM.N_Ri.value = "N/A";
+        }
+    } else {
+        FORM.N_Ri.value = "N/A";
+    }
+
+    // --- NEU: BERECHNUNGEN FÜR KUPFERGEWICHT ---
+    // Annahme: V_laenge und N_laenge sind die Drahtlänge pro Strang/Phase.
+    // Daher wird am Ende mit ANZAHL_PHASEN (3) multipliziert, um das Gesamtgewicht des Motors zu erhalten.
+    
+    // Original (V-Werte)
+    if (V_laenge > 0 && V_Einzeldraht_Q > 0) {
+        // Volumen eines einzelnen Drahtes über die angegebene Länge (V_laenge)
+        // V_Einzeldraht_Q ist in mm^2, V_laenge in m. Umrechnung V_laenge zu mm (*1000)
+        var V_Volumen_Einzel_mm3 = V_laenge * 1000 * V_Einzeldraht_Q;
+        
+        // Gesamtvolumen des Kupfers für EINEN Strang (unter Berücksichtigung von Filar)
+        var V_Volumen_Kupfer_Strang_mm3 = V_Volumen_Einzel_mm3 * V_Filar;
+        
+        // Gesamtgewicht des Kupfers für alle 3 Phasen des Motors (in Gramm)
+        var V_Kupfergewicht_g = V_Volumen_Kupfer_Strang_mm3 * KUPFER_DICHTE_G_PRO_MM3 * ANZAHL_PHASEN;
+        FORM.V_Kupfergewicht.value = V_Kupfergewicht_g.toFixed(2); // Auf 2 Nachkommastellen runden
+    } else {
+        FORM.V_Kupfergewicht.value = "N/A";
+    }
+
+    // Neu (N-Werte)
+    if (N_laenge > 0 && N_Einzeldraht_Q > 0) {
+        var N_Volumen_Einzel_mm3 = N_laenge * 1000 * N_Einzeldraht_Q;
+        var N_Volumen_Kupfer_Strang_mm3 = N_Volumen_Einzel_mm3 * N_Filar;
+        var N_Kupfergewicht_g = N_Volumen_Kupfer_Strang_mm3 * KUPFER_DICHTE_G_PRO_MM3 * ANZAHL_PHASEN;
+        FORM.N_Kupfergewicht.value = N_Kupfergewicht_g.toFixed(2);
+    } else {
+        FORM.N_Kupfergewicht.value = "N/A";
+    }
+}
+
+// Initialer Aufruf der Calc-Funktion, um Werte bei Seitenladen anzuzeigen
+document.addEventListener('DOMContentLoaded', (event) => {
+    Calc();
+});
+</script>
+
+</center></body>
+</html>
+

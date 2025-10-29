@@ -1,0 +1,132 @@
+<!DOCTYPE html><html>
+<head>
+  <title>Solar MPP Steuerung www.lambertus.info </title>
+  <meta charset="UTF-8">     
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                                                        
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css"    rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body><center>
+<form name="FORM" action="JavaScript:Calc();">
+<table>
+<tr bgcolor="E3E3E3">
+<td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; Solar MPP Steuerung</a></td>
+<td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+</tr>
+
+<tr><td><pre>
+Der MPP hat die Aufgabe, den Motor so zu regeln, das das Solarpanel stets mit der 
+optimalen MPP-SPannung läuft. (MPP=Maximum Power Point).
+
+<b>Der TINY-MPP.</b>
+<img alt="" src="img/tinympp.jpg" style="width: 782px; height: 215px;" />
+Im TINY-MPP stecken viele  Jahre aktiver Solarflug mit ständiger Feinoptimierung der Software drinn. 
+Mit Servokabeln versehen, wird der TINY-MPP einfach zwischen Empfänger und Regler gesteckt.
+Zusätzlich wurde der TINY-MPP um Hott Telemtrie erweitert.
+
+Die Software ist in C geschrieben, bassiert auf einem AVR-Attiny44, ist natürlich Open, und kann per 
+Mail versandt werden. Gerne versende ich auch gerne den fertig bespielten Chip zum Selbstkostenpreis.
+
+Der TINY-MPP wiegt ohne Kabel nur ca. 0,8g.
+Zellenzahl 6-18 Solarzellen mit den vorgeschlagenen Widerständen.
+Höhere Zellenzahl ist mit einem anderem Widerstand möglich.
+
+Der Arbeitspunkt für den MPP kann sehr einfach über den Sender eingepegelt werden.
+Weitere Einstellungsmöglichkeiten für viele optionale Funktionen gibt es im Expert-Mode.
+Der TINY-MPP über das Servokabel updatebar, wenn es mal sein soll/muss.
+
+<strong><big>TINY-MPP LÖTEN</big></strong>
+TINY-MPP EINPEGELN siehe unten.
+
+<img alt="" src="img/tinymppc.jpg" style="width: 562px; height: 372px;" />
+Das Schaltbild mit den beiden Widerständen.
+
+<img alt="" src="img/tinympp_l1.jpg" style="width: 640px; height: 380px;" />
+Der 4K7 Widerstand werden gekürzt, und schlank angebogen, und anschliesend verlötet.
+
+<img alt="" src="img/tmm40.jpg" style="width: 640px; height: 124px;" />
+Ein Servokabel wird vorbereitet, Rot und Schwarz die Iso geöffnet und verzinnt.
+
+<strong>ACHTUNG</strong>, folgen Bilder sind Unterseite.
+Die Untersteite ist natürlich Seitenverkehrt zur Oberseite des Schaltbildes.
+
+<img alt="" src="img/tmm50.jpg" style="width: 640px; height: 275px;" />
+Die beiden Beinchen für Plus und Minus etwas kürzen, und nach innen über die abisolierten Drähtchen 
+biegen, und verzinnen.
+
+<img alt="" src="img/tinympp_l3.jpg" style="width: 800px; height: 360px;" />
+Die restlichen Beinchen werden gestutzt. Die weissen Drähte werden nach dem Schaltbild angelötet, und eine 
+3er Stiftleiste als "Reglerbuchse" angelötet.
+Die Sensorleitung für das Solarpanel wird angelötet, der 47K Widerstand wird direkt in das Kabel gelötet.
+<img alt="" src="img/tinympp_l4.jpg" style="width: 800px; height: 179px;" />
+Das war es auch schon, nun kann der TINY-MPP verschrumpft werden.
+
+
+<strong><big>TINY-MPP EINPEGELN</big></strong>
+
+<strong>Schritt 1:</strong>
+Den Gasknüppel am Sender aus Vollgas stellen, und den Servomonitor aktivieren.
+Den Antrieb mit dem Solarpanel und einem Messgerät verbinden, der Regler initialisiert.
+Den Gasknüppel langsam zurückbewegen, der Motor beginnt zu laufen.
+Mit dem Gasknüppel die richtige MPP-Spannung suchen.
+&nbsp; -Wird der Gasknüppel dabei in Richtung Leerlauf bewegt, sinkt die MPP-Spannung.
+&nbsp; -Wird der Gasknüppel dabei in Richtung Vollgas bewegt, steigt die MPP-Spannung.
+Ist die Zielspannung gefunden, den Wert aus dem Servomonitor notieren.
+Den Gasknüppel wieder auf Vollgas, der Motor bleibt stehen.
+
+<strong>Schritt 2:</strong>
+Einen Zwei-Wegeschalter auf dem Gaskanal legen.
+&nbsp;-Ein Ende mit dem Wert auf +100% am Sender programmiert (Motor AUS)
+&nbsp;-Das andere Ende wird mit dem zuvor notieren Wert programmiert (Motor AN)
+Bei Bedarf kann noch eine Feineinstellung der MPP Spannung am Sender erfolgen.
+
+<strong>Die ideale MPP-Spannung:</strong>
+Als groben Ausgangswert kann man bei den C60/E60 von 0,52V pro Zelle ausgehen.
+Genauer geht es mit einem Watt-Meter, die Spannung mit der höchsten Leistung ist der MPP. 
+In der Praxis ergibt sich hier meist kein fixer Wert, eher ein von-bis Bereich, bei dem 
+man sich dann immer in Richtung des Ausgangswertes orientieren sollte.
+
+<strong>SONSTIGES</strong>
+-Das Einlernen muss mit Propeller erfolgen, da dieser quasi die Last darstellt.
+-Der Propeller sollte so abgestimmt sein, das er bei MPP Spannung auch den Maximalstrom 
+ der Solarzellen erreicht.
+-weitere Einstellungsmöglichkeiten gibt es im Expert-Mode, nicht nötig, aber möglich.
+
+
+TINY-MPP SMD-Version für Extrembastler, gleicher Chip, dieselbe Pinbelegung, nur kleiner 
+und leichter. Es wird der Spannungsteiler der eh auf dem Regler vorhanden ist mirbenutzt, 
+so das gänzlich keine externen Bauteile nötig sind.
+<img alt="" src="img/tmppsmd1.jpeg" style="width: 600px; height: 298px;" />
+
+<img alt="" src="img/tmppsmd3.jpeg" style="width: 600px; height: 365px;" />
+
+<img alt="" src="img/tmppsmd4.jpg" style="width: 600px; height: 176px;" />
+
+</pre></td></tr>
+</table>
+<h5><i><a href="index.html"> (c) www.Lambertus.info</a></i></h5>
+</form>
+
+</center></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

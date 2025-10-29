@@ -1,0 +1,83 @@
+<!DOCTYPE html><html>
+<head>
+  <title>G-Code für die Trafowickelmaschine www.lambertus.info </title>
+  <meta charset="UTF-8">     
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                                                        
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css"    rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body><center>
+<form action="JavaScript:Calc();" name="FORM">
+<table>
+<tr bgcolor="E3E3E3">
+	<td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; Trafo-Winder</a></td>
+	<td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+</tr>
+
+<tr><td>
+<pre>
+      Windungen <input  name= "val1" size="1" type="text"> [Wdg]
+     Drahtdicke <input  name= "val2" size="1" type="text"> [mm]
+   Spulenbreite <input  name= "val3" size="1" type="text"> [mm]
+       Drehzahl <input  name= "val4" size="1" type="text"> [Rpm]
+   Wickelanfang <select name= "val5">   <option value="0" selected="selected">LINKS </option>
+										<option value="1"                    >RECHTS</option>	</select>
+    Wickelachse <select name= "val6" >  <option value="1" 				     >A		</option>
+										<option value="2" selected="selected">Z		</option>	</select>
+  Vorschubachse <select name= "val7" >  <option value="1" selected="selected">X		</option>
+										<option value="2"                    >Y		</option>	</select>
+<input value=" G-Code erstellen (neues Fenster) " type="submit" onclick="Calc()">
+</pre>
+</td>
+</tr>
+</table>
+<h5><i><a href="index.html"> (c) www.Lambertus.info</a></i></h5>
+</form>
+
+
+
+
+
+<script type="text/javascript">
+function Calc() {
+var FeedActual = 0;
+var TurnsActual = 0;
+var TurnsAll= document.FORM.val1.value;
+var wire 	= document.FORM.val2.value;
+var bobin   = document.FORM.val3.value;
+var rpm		= document.FORM.val4.value;
+if (document.FORM.val5.value==0)	{var dir = 1;} else {var dir = -1;}				//Wickelrichtung
+if (document.FORM.val6.value==1)	{var TurnAxis ="A";} else {var TurnAxis ="Z";} 	//Drehachse
+if (document.FORM.val7.value==1)	{var FeedAxis ="X";} else {var FeedAxis ="Y";} 	//Vorschubachse
+
+var TurnsPerLayer = Math.round (bobin / wire);  	// Windungen pro Lage,
+	if (TurnsPerLayer * wire > bobin) {TurnsPerLayer-=1;}	// Windungen pro Lage, auf volle Windungszahl abziehen
+
+var Fenster1 = window.open("", "G-Code Ausgabe", "width=400,height=700");   // Ausgabe im neuem Fenster öffnen
+	Fenster1.document.open("text/html");
+
+Fenster1.document.write("(Windungen: " + (Math.round (TurnsAll)));
+Fenster1.document.write(")<br>(Drahtdicke: " + (wire));
+Fenster1.document.write(")<br>(Spulenbreite: " + (bobin));
+Fenster1.document.write(")<br>(Drehzahl: " + (rpm));
+Fenster1.document.write(")<br>(Turns per Layer: " + (Math.round (TurnsPerLayer)));
+Fenster1.document.write(")<br>(Layer: " + (Math.round (TurnsAll / TurnsPerLayer)));
+Fenster1.document.write(")<br><br>G90<br>M03<br><br>");
+
+while ( (TurnsActual+TurnsPerLayer) < TurnsAll) { 	 // G-Code erstellen in Schleife
+	TurnsActual += TurnsPerLayer;
+	if (FeedActual == 0){FeedActual = bobin * dir; }
+	else                {FeedActual = 0; } 													//aktuelle Wickelrichtung
+	Fenster1.document.write("G01 "+ FeedAxis + FeedActual.toFixed(2) + "&nbsp;" + TurnAxis + TurnsActual +  "&nbsp;&nbsp;&nbsp; F" + rpm +"<br>");
+}	//Schleifenende
+	if (FeedActual==0) {FeedActual = dir * (        ((TurnsAll - TurnsActual) * wire)) }
+	else               {FeedActual = dir * (bobin - ((TurnsAll - TurnsActual) * wire)) }
+	Fenster1.document.write("G01 "+ FeedAxis + FeedActual.toFixed(2) + "&nbsp;" + TurnAxis + TurnsAll + "&nbsp;&nbsp;&nbsp; F" + rpm +"<br><br>M30<br>");
+}</script>
+
+</center></body></html>

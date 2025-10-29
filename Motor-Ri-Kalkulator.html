@@ -1,0 +1,76 @@
+<!DOCTYPE html><html>
+
+<head>
+  <title>Motor-Ri-Kalkulator www.lambertus.info</title>
+  <meta charset="UTF-8">     
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                                                        
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css"    rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body><center>
+<form name="FORM" action="JavaScript:Calc();">
+<table>
+<tr bgcolor="E3E3E3">
+	<td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; Motor-Ri-Kalkulator</a></td>
+	<td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+</tr>
+	
+<tr><td><pre>
+            Draht_D <input name="Draht_D" 				size="1" type="text" onChange="Calc(this.form)"> mm
+        Drahtlaenge <input name="Draht_L"				size="1" type="text" onChange="Calc(this.form)"> m
+   Draehte parallel <input name="Draht_N"	value="1"	size="1" type="text" onChange="Calc(this.form)"> Stueck
+           Material <select name="Material"                                  onchange="Calc( this.form )">
+						<option value="178" selected="selected">Kupfer   </option>
+						<option value="278">             	    Aluminium</option>
+						<option value="165">                    Silber   </option>
+                    </select>
+
+    Ges.Querschnitt <input name="Draht_Q"				size="1" type="text" readonly="readonly" CLASS=OUTP> mm&sup2;
+   entspricht Draht <input name="Draht_E"  			    size="1" type="text" readonly="readonly" CLASS=OUTP> mm
+   Ri Draht-Einfach <input name="Ri_0" 				    size="1" type="text" readonly="readonly" CLASS=OUTP> m&#8486;
+   Ri Motor-Dreieck <input name="Ri_D"					size="1" type="text" readonly="readonly" CLASS=OUTP> m&#8486;
+     Ri Motor-Stern <input name="Ri_Y"					size="1" type="text" readonly="readonly" CLASS=OUTP> m&#8486;
+</pre>
+</td>
+</tr>
+</table>
+<h5><i><a href="index.html"> (c) www.Lambertus.info</a></i></h5>
+</form>
+
+
+<script language="JavaScript">
+function Calc() {
+var Draht_D   = FORM.Draht_D.value;  //Variablen holen
+var Draht_N   = FORM.Draht_N.value;
+var Draht_L   = FORM.Draht_L.value;
+var SpezR     = FORM.Material.value;
+var Draht_Q   = FORM.Draht_Q.value = Math.round (1000 *  (Draht_D * Draht_D * Draht_N * 0.7853981625)) / 1000;  // Querschnitt
+                FORM.Draht_E.value = Math.round ( 100 *   Math.sqrt(Draht_D * Draht_D * Draht_N))      / 100;   // Ersatzquerschnitt
+				FORM.Ri_0.value    = Math.round (SpezR * (Draht_L / Draht_Q))        / 10; // Ri Einzeldraht
+				FORM.Ri_D.value    = Math.round (SpezR * (Draht_L / Draht_Q) / 1.5)  / 10; // Ri Dreieck
+				FORM.Ri_Y.value    = Math.round (SpezR * (Draht_L / Draht_Q) * 2.0)  / 10; // Ri Stern
+}</script>
+
+</center></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html><html>
+<head>
+  <title>Motorkurven www.lambertus.info </title>
+  <meta charset="UTF-8">     
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                                                        
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css"    rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body><center>
+	<form action="JavaScript:Calc();" name="FORM"> 
+<table width="1000">
+<tbody>
+<tr bgcolor="E3E3E3">
+	<td align="left"> <a href="http://lambertus.info/index.html"><big>&nbsp;⌂&nbsp;</big>Home ✈ Kurvensimulator</a></td>
+	<td align="right"><a href="http://lambertus.info/index.html">✘&nbsp;</a></td>
+</tr>
+<tr>
+	
+
+
+<td width="250"><pre>	                Motor-A Motor-B 	  
+Leerlaufspannung U0 [V] <input name="U0" size="4" type="text" onchange="Calc(this.form)" value="33"  > <input name="U0B" size="4" type="text" onchange="Calc(this.form)">
+   Leerlaufstrom I0 [A] <input name="I0" size="4" type="text" onchange="Calc(this.form)" value="3.1"   > <input name="I0B" size="4" type="text" onchange="Calc(this.form)"> 
+  Innenwiderstand[mOhm] <input name="Ri" size="4" type="text" onchange="Calc(this.form)" value="16"  > <input name="RiB" size="4" type="text" onchange="Calc(this.form)"> 
+             KV [rpm/V] <input name="KV" size="4" type="text" onchange="Calc(this.form)" value="534">  
+</pre></td>
+
+<td width="750"><pre><i>Experimenteller Simulator für Motorkurven, rechnet garantiert falsch</i>
+
+Ausgabe für:    	
+Betriebsspannunng [V] <input name="Us" size="4" type="text" onchange="Calc(this.form)" value="21">    
+<select name="zoom" onChange="Calc(this.form)" > 
+									<option value="4">4</option> 
+									<option value="2">2</option>
+									<option value="1">1</option>
+									</select> ZOOM 	
+
+</pre></td>
+</tr>
+
+<tr>
+	<td colspan="2">
+	<canvas id="leinwand" width="1000" height="550"></canvas>
+	<script type="text/javascript"> 
+	 
+	function parseNum(val){re = /,/g;	return parseFloat( val.replace( re, '.' ) );}  // Kommascript
+	function Calc() {
+		
+var Us = parseNum(FORM.Us.value); // Sollspannung
+var zoom = parseNum(FORM.zoom.value); // Sollspannung
+
+var U0 = parseNum(FORM.U0.value);
+var I0 = parseNum(FORM.I0.value);
+var Ri = parseNum(FORM.Ri.value);
+var KV = parseNum(FORM.KV.value);
+var I0 = I0 * Math.sqrt(Us) / Math.sqrt(U0); // Leerlaufstrom bei Sollspannung
+var Ik =  Us / (Ri*1.5) * 1000;  //Blockierstrom
+
+var U0B = parseNum(FORM.U0B.value);
+var I0B = parseNum(FORM.I0B.value);
+var RiB = parseNum(FORM.RiB.value);
+//var KVB = parseNum(FORM.KVB.value);
+var I0B = I0B * Math.sqrt(Us) / Math.sqrt(U0B); // Leerlaufstrom bei Sollspannung
+var IkB =  Us / (RiB*1.5) * 1000;  //Blockierstrom
+
+var Pmax= Ik * Us;
+var rpm = KV * Us;
+var leinwand = document.getElementById('leinwand').getContext('2d');     	
+	leinwand.fillStyle = "Gray"; 
+	leinwand.fillRect(00,00,1000,550);
+	leinwand.fillStyle = "White"; 
+	leinwand.fillRect(01,01,998,500);
+	leinwand.fillStyle = "White"; 
+	leinwand.fillRect(01,502,998,47);
+// Diagram Netz und Beschriftung
+	for (var i = 1; i < 10; i++) {	
+    var I_x = Ik/10/zoom;
+    var P_x = Us*I_x;
+    var P_y = Us*I_x*zoom/4; 
+    leinwand.lineWidth=1;     //Gitternetz
+	leinwand.strokeStyle= "lightgrey"; 
+	leinwand.beginPath();
+	leinwand.moveTo( i*100, 500);
+	leinwand.lineTo( i*100, 0);
+	leinwand.stroke();	
+	leinwand.moveTo( 0,i*50);
+	leinwand.lineTo( 1000,i*50);
+	leinwand.stroke();  	
+	leinwand.font = "15px Arial";  //Schrift global
+    leinwand.fillStyle = "Black"; //X-Achsbeschriftung
+	leinwand.fillText( Math.round( i*I_x*10)/10  ,i*100-10, 520);	
+	leinwand.fillText( Math.round( i*P_x *10)/10       ,i*100-10, 540);	
+    leinwand.fillStyle = "Red"; // Y-Achsbeschriftung Pw	
+	leinwand.fillText( Math.round( i*P_y )       ,950, 505-i*50-8);
+	leinwand.fillStyle = "Green"; // Achsbeschriftung eta
+    leinwand.fillText(100-i*10,2, i*50+5);	
+	leinwand.fillStyle = "blue"; // Achsbeschriftung rpm   
+    leinwand.fillText(  Math.round(     (10-i)/10*rpm   )   ,950, i*50+12);
+	}
+	// Drehzahlkurve
+	leinwand.strokeStyle= "Blue"; 
+	leinwand.beginPath();
+	leinwand.moveTo( I0*zoom, 0);
+	leinwand.lineTo( 1000, 500/zoom);
+	leinwand.stroke();
+	//Textausgaben
+    leinwand.fillStyle = "Black";  
+	leinwand.fillText('I0-A [A]: '+Math.round(I0*100)/100, 605,445);		
+	leinwand.fillText('Ik-A [A]: '+Math.round(Ik)        , 605,465);
+	leinwand.fillText('I0-B [A]: '+Math.round(I0B*100)/100,  705,445);		
+	leinwand.fillText('Ik-B [A]: '+Math.round(IkB)        ,  705,465);
+	leinwand.fillText('I [I]',  25,520);
+	leinwand.fillText('P [W]',  25,540);
+	leinwand.fillStyle = "green";
+	leinwand.fillText('eta [%]',  5,330);
+	leinwand.fillStyle = "red";
+	leinwand.fillText('Pw [W]',  940,30);
+	leinwand.fillStyle = "blue";
+	leinwand.fillText('rpm',  940,78);
+	leinwand.fillStyle = "blue";
+	// Kurven	
+	for (var i = 1; i < 1000; i++) {
+		var I = i/1000 * Ik/zoom ;	
+		
+		var eta = ( 1+ I0/Ik - I/Ik - I0/I ) ;
+		var Pw = Us * I * eta  ;
+		if(Pw>0){	
+			leinwand.fillStyle = "Green"; 	
+			leinwand.fillRect(i,(eta*500-500)*-1,2,2);			
+			leinwand.fillStyle = "Red"; 
+			leinwand.fillRect(i, (500/Pmax*Pw*4-500)*-1, 2, 2);	
+		}
+		
+		var etaB = ( 1+ I0B/IkB - I/IkB - I0B/I ) ;
+		var PwB = Us * I * etaB  ;
+		if(PwB>0){	
+			leinwand.fillStyle = "Green"; 	
+			leinwand.fillRect(i,(etaB*500-500)*-1,1,1);			
+			leinwand.fillStyle = "Red"; 
+			leinwand.fillRect(i, (500/Pmax*PwB*4-500)*-1, 1, 1);	
+		}
+	}
+}
+    // NEUE ZEILE HIER: Rufe Calc() beim Laden der Seite auf
+    window.onload = Calc;
+</script>
+</td></tr></tbody></table>
+</form>
+</center>
+</body></html>

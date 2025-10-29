@@ -1,0 +1,139 @@
+<!DOCTYPE html><html>
+<head>
+  <title> Solarzellen www.lambertus.info </title>
+  <meta charset="UTF-8">     
+  <meta name="author"      content="Holger Lambertus">
+  <meta name="copyright"   content="Holger Lambertus">
+  <meta name="publisher"   content="Holger Lambertus">                                                                                                        
+  <meta name="description" content="Holger Lambertus, Weltrekordinhaber Solatflug, Experte für effiziente Elektromotoren und kunsthandwerklicher Motorwicklungen mit höchstem Füllgrad">
+  <meta name="keywords"    content="Solarflug, Solarflieger, Modellflug, Elektromotor, Füllgrad, Handwicklung, Wicklung"> 
+  <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+  <link type="text/css"    rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body><center>
+
+<table>
+<tr bgcolor="E3E3E3">
+	<td align="left"> <a href="index.html"><big>&nbsp;&#8962;&nbsp;</big>Home &#9992; Solarzellen</a></td>
+	<td align="right"><a href="index.html">&#10008;&nbsp;</a></td>
+</tr>
+<tr><td>
+
+<pre>
+Für uns Modellflieger gibt es derzeit kaum eine Alternative zur Sunpower C/E-60 Solarzelle,
+sie sind dank Back-Contact hocheffizient, um die Profilwölbung ausreichens flexibel, und 
+vergleichsweise einfach zu handhaben.
+
+<b>Sunpower-Zellen sortiert nach  Bin-Codes (ohne Gewähr):
+
+Gen-5, 6" 161x161mm Dia=217-? mm</b>
+ Bin-Mn1 6,44W	24,9%
+ Bin-Ln	 6,25W	24,2%
+ Bin-Kn	 6,00W	23,2%	 
+<b>Gen-3 (E60) 5" 125x125mm / Dia=160mm</b>
+ Bin-Me1  3,72W  24,3%  "Utra Peak Performance"
+ Bin-Le1  3,62W  23,7%  "Ultra Premium Performance"
+ Bin-Le1  3,62W  23,7%  "Ultra Premium Performance"
+ Bin-Ke1  3,54W  23,1%  "Ultra High Performance"
+ Bin-Je1  3,46W  22,6%  "Ultra Performance"
+ Bin-K    3,67W  23,9% 
+ Bin-J    3,66W  23,9%
+ Bin-I    3,62W  23,6% 
+ Bin-H    3,58W  23,3% x
+ Bin-G    3,53W  23,0% 
+ Bin-F    3,48W  22,7% 
+ Bin-E    3,45W  22,5% 
+ Bin-D    3,36W  21,9% 	 
+<b>Gen-2 (C60) 5" 125x125mm / Dia=160mm</b>b>
+ Bin-Kp 	 3,49W 	22,7% 	
+ Bin-Jp 	 3,44W 	22,4%
+ Bin-Hp 	 3,41W 	22,3% 
+ Bin-J 	 3,42W 	22,5% 
+ Bin-I 	 3,40W 	22,3% 	
+ Bin-H 	 3,38W 	22,1% 	
+ Bin-G 	 3,34W 	21,8% 	
+ Bin-F 	 3,30W 	21,5% 
+ Bin-E 	 3,26W 	21,3% 	
+ Bin-D 	 3,20W 	20,9%	-LowPower  Bin
+ Bin R			-very low power
+ Bin Q			-cosmetic reject
+ Bin X			-cracked or chipped cells
+ Bin TS			-hot spot failure
+<form action="JavaScript:Calc();" name="Form"><table border ="1">
+<tr><td colspan="2" CLASS=small>Dieser kleine Onlinerechner berücksichtigt nun auch die "Eselsohren" der Solarzellen.
+Da Solarzellen auf 1000W/m² nominiert sind, ergibt sich folgende simple Formel:
+1000W/m x Fläche [m²] x Wirkungsgrad[%] = Leistung[Watt] 
+Bitte Punkte statt Komma verwenden.</td></tr>
+<tr><td><input name="KREIS"   size="1" type="text" onChange="Calc(this.form)" value="160"> mm Kreis-Diagonale       </td><td id="idFLAECHE">&nbsp;</td></tr>
+<tr><td><input name="QUAD"	  size="1" type="text" onChange="Calc(this.form)" value="125"> mm Quadrat-Kantenlänge   </td><td id="idETA">&nbsp;</td></tr>
+<tr><td><input name="POWER_E" size="1" type="text" onChange="Calc(this.form)"            > W Leistung (optional)    </td><td id="idPOWER">&nbsp;</td></tr>
+<tr><td><input name="ETA_E"	  size="1" type="text" onChange="Calc(this.form)"            > % Wirkungsgrad (optional)</td><td id="idFLAECHE2">&nbsp;</td></tr>
+</table></form>
+
+<b>Beispielskitze einer C60/E60 Solarzelle:</b>
+<img src="img/dimensions-of-the-sunpower-c60-solar-cell.ppm.png" style="width: 401px; height: 379px;">
+
+<b>Vergleich zur Unterscheidung Gen-2 (C60) vs. Gen-3 (E60) Zellen</b>
+<img src="img/c50vsc60b.jpeg">
+Auf der Minusseite (rechts im Bild, heller hervorgehoben) befindet sich bei der E60 
+ein Minuszeichen (orangener Pfeil), und das Leiterbahn-Bild um das Lötpad ist "ründlich".
+</pre>
+</td></tr>
+</table>
+<h5><i><a href="index.html"> (c) www.Lambertus.info</a></i></h5>
+
+
+
+
+<script type="text/javascript">function Calc() {
+var a = document.Form.QUAD.value*1 / 2;     // Berechnung der Ankatete aus Quadtat, = halbe Kantenlänge
+var c = document.Form.KREIS.value*1 / 2;    // Berechnung der Hypotenuse aus Kreis, = Radius
+var b = Math.sqrt((c * c) - (a * a));           // Berechnung der Gegenkatete per Pytagoras
+var triflaeche = (a*b)/2;                          // Berechung der Fläche des Dreiecks 
+var triwinkel = Math.atan2(b, a) * 180 / Math.PI;   // Berechung des Winkels ß mit arctangen        
+var tortenwinkel = (360 - (triwinkel*8))/4;          // 360! vollkreis abzgl 8x DreiecksWinkel ß ergibt den Gesammtwinkel der 4 Tortenstück . 
+var kreisflaeche = document.Form.KREIS.value * document.Form.KREIS.value * Math.PI /4;
+var tortenflaeche = kreisflaeche / 360 * tortenwinkel;
+var solarflaeche = tortenflaeche * 4 + triflaeche * 8 ;
+
+var POWER = document.Form.POWER_E.value*1;
+var ETA = document.Form.ETA_E.value*1;
+var eta   = Math.round (POWER  / solarflaeche*1000000) /10; 
+var power = Math.round (ETA  * solarflaeche / 1000) / 100; 
+var FLAECHE = Math.round ( POWER / ETA *1000 )/100;
+
+var dia = Math.sqrt((a * a) + (a * a)); 
+// c ist radius  a ist halbe seitenlänge, 
+if      (c < a  ) { document.getElementById("idFLAECHE").innerHTML = ("<b>FEHLER:</b> Dein Kreis ist kleiner als das Quadrat");}
+else if (c > dia) { document.getElementById("idFLAECHE").innerHTML = ("<b>FEHLER:</b> Dein Kreis ist größer  als das Quadrat");}
+else{document.getElementById("idFLAECHE").innerHTML = ("<small>Die Solarzelle hat eine Fläche von <b>" + (Math.round(solarflaeche/10)/1000) + "</b> dm².</small>");}
+
+if(POWER > 0){  document.getElementById("idETA").innerHTML = ("<small>Mit einer einer Fläche von " + (Math.round(solarflaeche/10)/1000) +"dm²<br>und einer Leistung von " + POWER + "W<br>hat eine Solarzelle einen Wirkungsgrad von " + eta +"%.</small>");}
+         else{  document.getElementById("idETA").innerHTML = ("<small>Keine optionale Leistung ausgewählt</small>");}
+	
+if(ETA   > 0){  document.getElementById("idPOWER").innerHTML = ("<small>Mit einer einer Fläche von " + (Math.round(solarflaeche/10)/1000) +"dm²<br>und einem Wirkungsgrad von " + ETA + "%<br>hat eine Solarzelle eine Leistung von " + power +"W.</small>");}
+         else{  document.getElementById("idPOWER").innerHTML = ("<small>Keine optionaler Wirkungsgrad ausgewählt</small>");}
+         
+if(ETA > 0 && POWER > 0){  document.getElementById("idFLAECHE2").innerHTML = ("<small>Gegenrechnung: Mit einem Wirkungsgrad von "+ ETA +"%<br>und einer Leistung von " + POWER +"W<br>hat eine Solarzelle eine Fläche von " + FLAECHE +"dm².");}
+                    else{  document.getElementById("idFLAECHE2").innerHTML = ("<small>Gegenrechnung: nur mit optionalen<br>Wirkunsgrad und Leistung möglich</small>");}
+}</script>
+
+</center></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
